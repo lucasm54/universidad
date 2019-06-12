@@ -34,12 +34,12 @@ public class AlumnoData {
     public void guardarAlumno(Alumno alumno){
         try {
             
-            String sql = "INSERT INTO alumno (nombre, fecNac, activo) VALUES ( ? , ? , ? );";
+            String sql = "INSERT INTO alumno (nombre, fechNac, activo) VALUES ( ? , ? , ? );";
 
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, alumno.getNombre());
             ps.setDate(2, Date.valueOf(alumno.getFecNac()));
-            ps.setBoolean(3, alumno.getActivo());
+            ps.setBoolean(3, alumno.isActivo());
             
             ps.executeUpdate();
             
@@ -68,9 +68,9 @@ public class AlumnoData {
             Alumno alumno;
             while(resultSet.next()){
                 alumno = new Alumno();
-                alumno.setId(resultSet.getInt("id"));
+                alumno.setId(resultSet.getInt("idAlumno"));
                 alumno.setNombre(resultSet.getString("nombre"));
-                alumno.setFecNac(resultSet.getDate("fecNac").toLocalDate());
+                alumno.setFecNac(resultSet.getDate("fechNac").toLocalDate());
                 alumno.setActivo(resultSet.getBoolean("activo"));
 
                 alumnos.add(alumno);
@@ -107,13 +107,13 @@ public class AlumnoData {
     
         try {
             
-            String sql = "UPDATE alumno SET nombre = ?, fecNac = ? , "
+            String sql = "UPDATE alumno SET nombre = ?, fechNac = ? , "
                     + "activo =? WHERE idAlumno = ?;";
 
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, alumno.getNombre());
             ps.setDate(2, Date.valueOf(alumno.getFecNac()));
-            ps.setBoolean(3, alumno.getActivo());
+            ps.setBoolean(3, alumno.isActivo());
             ps.setInt(4, alumno.getId());
             ps.executeUpdate();
             
@@ -142,7 +142,7 @@ public class AlumnoData {
                 alumno = new Alumno();
                 alumno.setId(resultSet.getInt("idAlumno"));
                 alumno.setNombre(resultSet.getString("nombre"));
-                alumno.setFecNac(resultSet.getDate("fecNac").toLocalDate());
+                alumno.setFecNac(resultSet.getDate("fechNac").toLocalDate());
                 alumno.setActivo(resultSet.getBoolean("activo"));
 
                 

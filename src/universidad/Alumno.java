@@ -30,6 +30,7 @@ public class Alumno {
         this.activo = activo;
     }
 
+   
     public Alumno(String nombre, LocalDate fecNac, boolean activo) {
         this.nombre = nombre;
         this.fecNac = fecNac;
@@ -40,7 +41,14 @@ public class Alumno {
     }
        
 //Metodos
-    
+     public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+
     public int getId() {
         return idAlumno;
     }
@@ -65,17 +73,11 @@ public class Alumno {
         this.fecNac = fecNac;
     }
 
-    public boolean getActivo() {
-        return activo;
-    }
-
-    public void setActivo(boolean activo) {
-        this.activo = activo;
-    }
 
     @Override
     public String toString() {
-        return "Alumno{" + '}';
+        return idAlumno + "-"+ nombre ;
+        
     }
         
         
